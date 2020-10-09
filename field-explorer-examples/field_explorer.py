@@ -6,10 +6,10 @@ from datetime import date
 import requests
 import pandas
 
+###
 from plotting import plot_timeseries
 
 API_KEY = os.environ.get("API_KEY") or exit('API_KEY environment variable required')
-
 
 def main():
     coordinates = {
