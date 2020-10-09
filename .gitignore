@@ -30,3 +30,4 @@ venv.bak/
 .ipynb_checkpoints
 verde-examples/output/
 .Rproj.user
+set api key in environment.R
