@@ -172,14 +172,14 @@ meanTemp_spdf <- sp::SpatialPointsDataFrame(coords=unnested_meanTemp_data_wide[,
 colnames(meanTemp_spdf@data)[5] = "type"
 
 # convert spdf to ESRI shapefile
-rgdal::writeOGR(obj=meanTemp_spdf, dsn="tempdir", layer="meanTemp2018", driver="ESRI Shapefile") 
+rgdal::writeOGR(obj=meanTemp_spdf, dsn="tempdir", layer="meanTemp2018", driver="ESRI Shapefile", overwrite_layer = TRUE ) 
 ```
 
 ### Results
  
 We can visualise our results by plotting them, using any GIS tool. Below, we display our meanTemp.shp file in QGIS using a standard basemap. Notice that in this example we receive only one point within our Rothamsted Research campus. This is because the data come from a grid at 5km resolution, therefore only a single centroid falls within our study area.
 
-![rothamsted_meantemp_demo.png](./rothamsted_meantemp_demo.png)
+<!-- ![rothamsted_meantemp_demo.png](./rothamsted_meantemp_demo.png) -->
 
 ```{r}
 # plot the mean temperature data observed for the area using ggplot

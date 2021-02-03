@@ -112,7 +112,7 @@ colnames(soilph_spdf@data)[1] = "unit"
 colnames(soilph_spdf@data)[3] = "type"
 
 # and finally, we convert the spdf to ESRI shapefile named "soilph" which we save in our tempdir folder
-rgdal::writeOGR(obj=soilph_spdf, dsn="tempdir", layer="soilph", driver="ESRI Shapefile") 
+rgdal::writeOGR(obj=soilph_spdf, dsn="tempdir", layer="soilph", driver="ESRI Shapefile", overwrite_layer = TRUE) 
 ```
 
 ### Working on our second geospatial layer of interest (soil invertebrate abundance)
@@ -148,14 +148,14 @@ colnames(invertebrates_data_spdf@data)[1] = "unit"
 colnames(invertebrates_data_spdf@data)[3] = "type"
 
 # and finally, we convert the spdf to ESRI shapefile named "soilph" which we save in our tempdir folder
-rgdal::writeOGR(obj=invertebrates_data_spdf, dsn="tempdir", layer="soil_invertebrates", driver="ESRI Shapefile") 
+rgdal::writeOGR(obj=invertebrates_data_spdf, dsn="tempdir", layer="soil_invertebrates", driver="ESRI Shapefile", overwrite_layer = TRUE) 
 ```
 
 ### Results
  
 We can visualise our results by plotting them using any GIS tool. The two shapefiles produced in this demo draw from the same 1km grid and so will have identical centroid coordinates meaning they will overlap if displayed at the same time. Below, we display our soil_invertebrates.shp file in QGIS using a standard basemap. 
 
-![rothamsted_invertebrates_demo.png](attachment:rothamsted_invertebrates_demo.png)
+<!-- ![rothamsted_invertebrates_demo.png](attachment:rothamsted_invertebrates_demo.png) -->
 
 ### Linear regression analysis 
 
@@ -168,10 +168,11 @@ Using data retrieved from the exercise above, we will perform a linear regressio
 # and "y" is the dependent variable
 # in this example "soil invertebrate abundance" values, extracted from the invertebrates_data_spdf
 
-results <- lm(invertebrates_data_spdf$value~soilph_spdf$value)
+Sys.getenv("GIT_ASKPASS")
+Sys.getenv("SSH_ASKPASS")
 
 # printing the results summary of our linear regression analysis
-print(summary(results))
+#print(summary(results))
 
 # plotting our data points and best-fit line
 plot(soilph_spdf$value, invertebrates_data_spdf$value, col = "blue",main = "Soil Invertebrate Abundance vs. Soil pH Regression",
